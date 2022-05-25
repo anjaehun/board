@@ -77,6 +77,7 @@ router.get("/boards/:boardsId", async (req, res) => {
   // 삭제 
   router.delete("/boards/:boardsId/delete/:password", async (req, res) => {   
     const { boardsId } = req.params;
+    const { password } = req.params;  
 
     const boardOne = await Boards.find({boardsId:Number(boardsId),password:password});
     console.log(boardOne.length);
