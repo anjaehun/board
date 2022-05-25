@@ -64,7 +64,7 @@ router.get("/boards/:boardsId", async (req, res) => {
     const { name,comment,udDate } = req.body;
     //console.log(password);
                                   
-    const boardOne = await Boards.find({boardsId:Number(boardsId),password:password})
+    const boardOne = await Boards.find({boardsId:Number(boardsId),password:password});
     console.log(boardOne.length);
     if (boardOne.length > 0) {
       await Boards.updateOne({boardsId:Number(boardsId)} // 조건문 수정하고자 하는 번호가 같을 때 
@@ -75,10 +75,10 @@ router.get("/boards/:boardsId", async (req, res) => {
   });
    
   // 삭제 
-  router.delete("/boards/:boardsId/delete", async (req, res) => {   
+  router.delete("/boards/:boardsId/delete/:password", async (req, res) => {   
     const { boardsId } = req.params;
 
-    const boardOne = await Boards.find({boardsId :  Number(boardsId)});
+    const boardOne = await Boards.find({boardsId:Number(boardsId),password:password})
     console.log(boardOne.length);
     if (boardOne.length > 0) { 
        await Boards.remove({boardsId:Number(boardsId)});
